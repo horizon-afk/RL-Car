@@ -3,4 +3,4 @@ gymnasium==1.2.2
 streamlit>=1.35.0
 numpy>=1.26.0
 swig==4.4.1
-Box2D==2.3.5
+Box2D==2.3.2
