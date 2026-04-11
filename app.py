@@ -215,10 +215,10 @@ def load_env():
 def load_agent(weight_path: str):
     """Import Agent lazily so missing file gives a clean error."""
     from agent import Agent
-    device = torch.device("cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     torch.set_default_dtype(torch.float32)
     agent = Agent(device)
-    state_dict = torch.load(weight_path, map_location="cpu", weights_only=True)
+    state_dict = torch.load(weight_path, map_location=device, weights_only=True)
     state_dict = {k: v.float() for k, v in state_dict.items()}
     agent.net.load_state_dict(state_dict)
     agent.net.float().to(device)
@@ -252,7 +252,7 @@ with st.sidebar:
 <div style='font-family:Share Tech Mono,monospace;font-size:0.7rem;color:#445;line-height:1.8'>
 PPO · Beta policy<br>
 CarRacing-v3<br>
-CPU inference<br>
+CUDA inference<br>
 frame skip × 10
 </div>
 """, unsafe_allow_html=True)

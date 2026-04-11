@@ -15,7 +15,7 @@ transition = np.dtype([('s', np.float32, (img_stack, 96, 96)),
 
 GAMMA=0.99
 EPOCH= 8 # beter than 10
-MAX_SIZE = 2000 ## CUDA out of mem for max_size=10000
+MAX_SIZE = 2000 ## Increase (e.g. 10000) if your GPU has sufficient VRAM
 BATCH=128 
 EPS=0.1
 LEARNING_RATE = 0.001 # bettr than 0.005 or 0.002 
